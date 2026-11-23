@@ -1,0 +1,6 @@
+.missed.json
+__pycache__/
+*.plan
+*.onnx
+hello-*.out
+video/_build/

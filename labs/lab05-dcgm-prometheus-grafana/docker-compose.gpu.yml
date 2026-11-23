@@ -1,0 +1,15 @@
+# Real NVIDIA GPU host only (driver + NVIDIA Container Toolkit installed).
+# Run: docker compose -f docker-compose.yml -f docker-compose.gpu.yml up -d
+# Check the newest image tag at https://catalog.ngc.nvidia.com (search "dcgm-exporter").
+services:
+  dcgm-exporter:
+    image: nvcr.io/nvidia/k8s/dcgm-exporter:latest
+    ports: ["9400:9400"]
+    cap_add: [SYS_ADMIN]
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: all
+              capabilities: [gpu]
